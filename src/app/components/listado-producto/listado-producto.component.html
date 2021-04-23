@@ -1,0 +1,49 @@
+<div class="list row">
+    <div class="col-md-6">
+      <h4>Listado de Productos</h4>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let productos of productos; let i = index"
+          [class.active]="i == currentIndex"
+          (click)="setActiveProductos(productos, i)"
+        >
+          {{ productos.nombre }}
+
+          <br><hr>
+        $
+          {{ productos.precio }}
+        </li>
+      </ul>
+
+      <!-- <button class="m-3 btn btn-sm btn-danger" (click)="removeProductos()">
+        Borrar Dato
+      </button> -->
+
+
+      <!-- <button (click)="removeProductos(nombre)"
+  class="btn btn-danger btn-sm" style="float: right">
+  Delete
+  </button> -->
+
+    
+
+      <button class="m-3 btn btn-sm btn-danger" (click)="removeAllProductos()">
+        Borrar Todo
+      </button>
+    </div>
+  
+    <div class="col-md-6">
+      <div *ngIf="currentProductos">
+        <app-productos-details
+          (refreshList)="refreshList()"
+          [productos]="currentProductos"
+        ></app-productos-details>
+      </div>
+  
+      <div *ngIf="!currentProductos">
+        <br />
+        <p>Seleccione un producto</p>
+      </div>
+    </div>
+  </div>
